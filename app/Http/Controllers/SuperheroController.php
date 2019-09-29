@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Superhero;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class SuperheroController extends Controller
@@ -54,7 +55,8 @@ class SuperheroController extends Controller
         $Superhero->catch_phrase = $request->input('catch_phrase');
         $Superhero->save();
 
-        return $this->index();
+        //return $this->index();
+        return redirect('/');
     }
 
     /**
@@ -63,9 +65,14 @@ class SuperheroController extends Controller
      * @param Superhero $superhero
      * @return Response
      */
-    public function show(Superhero $superhero, $id)
+    public function show(Superhero $superhero)
     {
-        return view('pages.show');
+       //dd(Superhero::findOrFail($superheroId));
+        //$superhero = DB::table('superheroes')->find($superheroId);
+        //$superhero = Superhero::findOrFail($superhero);
+
+
+       return view('pages.show', compact('superhero'));
     }
 
     /**
@@ -76,7 +83,8 @@ class SuperheroController extends Controller
      */
     public function edit(Superhero $superhero)
     {
-        //
+
+        return view('pages.formEdit',compact('superhero'));
     }
 
     /**
@@ -88,7 +96,16 @@ class SuperheroController extends Controller
      */
     public function update(Request $request, Superhero $superhero)
     {
-        //
+        $superhero->url_image = $this->imageValidation($request->file('image'));
+        $superhero->nickname​ = $request->input('nickname​');
+        $superhero->real_name​ = $request->input('real_name');
+        $superhero->origin_description​ = $request->input('origin_description');
+        $superhero->superpowers = $request->input('superpowers');
+        $superhero->catch_phrase = $request->input('catch_phrase');
+        $superhero->update();
+
+        //return $this->index();
+        return redirect('/');
     }
 
     /**
@@ -104,8 +121,6 @@ class SuperheroController extends Controller
 
     public function imageValidation($image)
     {
-
-
         $validator = Validator::make(request()->all(), [
             'image' => 'required|image|mimes:jpeg,png,jpg,gif',
 

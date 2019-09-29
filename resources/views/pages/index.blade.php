@@ -11,16 +11,16 @@
         </div>
         <div class="row d-flex justify-content-center">
             @foreach($Superheroes as $superhero)
-                <div class="col-12 col-md-4 my-1 d-flex justify-content-center">
-                    <div class="card shadow-lg p-3 mb-3 bg-white rounded m-0" style="width: 16rem; height: 355px ">
+                <div class="col-12 col-md-4 my-0 d-flex justify-content-center" style="width: 260px!important; height: 337px; ">
+                    <div class="card shadow-lg p-1 mb-3 bg-white rounded m-0" >
                         <img
                             src="{{ asset('/storage/'.$superhero->url_image) }}"
                             class="card-img-top" alt="Image of hero">
-                        <div class="card-body text-center">
+                        <div class="card-body text-center p-0">
                             <h3 class="card-title">{{ $superhero->nickname​ }}</h3>
 
-                            <a href="#" class="btn btn-light p-1">More</a>
-                            <a href="#" class="btn btn-primary p-1">Edit</a>
+                            <a href="/superheroes/{{$superhero->id}}" class="btn btn-light p-1">More</a>
+                            <a href="/superheroes/{{$superhero->id}}/edit" class="btn btn-primary p-1">Edit</a>
                             <a href="#" class="btn btn-danger p-1">Delete</a>
                         </div>
                     </div>

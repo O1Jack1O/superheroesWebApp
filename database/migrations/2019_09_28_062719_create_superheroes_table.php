@@ -14,6 +14,7 @@ class CreateSuperheroesTable extends Migration
     public function up()
     {
         Schema::create('superheroes', function (Blueprint $table) {
+            $table->collation = 'utf8mb4_general_ci';
             $table->bigIncrements('id');
             $table->string('nickname​');
             $table->string('real_name​');
