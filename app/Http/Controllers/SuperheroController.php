@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Superhero;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class SuperheroController extends Controller
 {
@@ -19,7 +20,9 @@ class SuperheroController extends Controller
     {
         $Superheroes = Superhero::paginate(5);
 
-        return view('superhero', compact('Superheroes'));
+
+
+        return view('pages.index', compact('Superheroes'));
     }
 
     /**
@@ -29,7 +32,7 @@ class SuperheroController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.formCreate');
     }
 
     /**
@@ -40,7 +43,18 @@ class SuperheroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Superhero = new Superhero();
+
+
+        $Superhero->url_image = $this->imageValidation($request->file('image'));
+        $Superhero->nickname​ = $request->input('nickname​');
+        $Superhero->real_name​ = $request->input('real_name');
+        $Superhero->origin_description​ = $request->input('origin_description');
+        $Superhero->superpowers = $request->input('superpowers');
+        $Superhero->catch_phrase = $request->input('catch_phrase');
+        $Superhero->save();
+
+        return $this->index();
     }
 
     /**
@@ -49,9 +63,9 @@ class SuperheroController extends Controller
      * @param Superhero $superhero
      * @return Response
      */
-    public function show(Superhero $superhero)
+    public function show(Superhero $superhero, $id)
     {
-        //
+        return view('pages.show');
     }
 
     /**
@@ -86,5 +100,24 @@ class SuperheroController extends Controller
     public function destroy(Superhero $superhero)
     {
         //
+    }
+
+    public function imageValidation($image)
+    {
+
+
+        $validator = Validator::make(request()->all(), [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+
+        ]);
+        if ($validator->fails()) {
+            return redirect('superheroes/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $path = $image->store('images','public');
+
+        return $path;
     }
 }

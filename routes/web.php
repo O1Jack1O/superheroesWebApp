@@ -13,4 +13,10 @@
 
 use App\Http\Controllers\SuperheroController;
 
-Route::get('/', 'SuperheroController@index');
+Route::get('/superheroes', 'SuperheroController@index');
+Route::get('/superheroes/create', 'SuperheroController@create');
+Route::post('/superheroes', 'SuperheroController@store');
+
+Route::redirect('/', '/superheroes');
+//Route::get('/', 'SuperheroController@index');
+//Route::
