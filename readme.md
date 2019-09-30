@@ -4,11 +4,26 @@
 
 
 1)Склонировать git реопзиторий
+
+```
+git clone https://github.com/O1Jack1O/superheroesWebApp.git
+cd superheroesWebApp/laradock/
+docker-compose up -d nginx mysql
+docker-compose exec workspace bash
+composer install
+php artisan storage:link
+
+
+```
+
 2)переход в папку с проектом superheroesDB
 
-3)переход в 
+cd superheroesWebApp/
+
+
 cd laravel
-4)Разорхивировать zip`s файлы с .evn (Пароль архива в сообщении.)
+
+
 
 5)дать полный доступ репозиторию bootstrap/cache:
 	
