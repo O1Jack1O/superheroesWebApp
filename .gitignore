@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
-.env
+
 .env.backup
 .phpunit.result.cache
 Homestead.json
@@ -13,7 +13,7 @@ yarn-error.log
 /laradock/.idea
 /laradock/logs
 /laradock/data
-/laradock/.env
+
 /laradock/.project
 /laradock/.docker-sync
 /laradock/jenkins/jenkins_home
