@@ -1,14 +1,40 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## About Laravel
+## Readme
 
+
+1)Склонировать git реопзиторий
+2)переход в папку с проектом superheroesDB
+
+3)переход в 
+cd laravel
+4)Разорхивировать zip`s файлы с .evn (Пароль архива в сообщении.)
+
+5)дать полный доступ репозиторию bootstrap/cache:
+	
+	5.1) Зайти в директорию superheroesDB 
+
+		cd laravel
+
+	5.2) Предоставить полный доспук к репозиторию bootstrap/cache
+
+		sudo chmod -R 777 storage bootstrap/cache
+
+6) Перейти в репозиторий laradock
+
+		cd laradock
+7) Запустить нужные для работы приложения сервисы
+
+		docker-compose up -d nginx mysql
+8)Перейти в рабочую область проекта
+	
+		docker-compose exec workspace bash
+9) Проинициализировать Composer ()
+
+		composer install
+		
+		
+		
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).

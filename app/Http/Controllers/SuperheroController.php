@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Superhero;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class SuperheroController extends Controller
@@ -13,16 +13,11 @@ class SuperheroController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $Request
-     * @param Superhero $Superhero
      * @return Response
      */
     public function index()
     {
         $Superheroes = Superhero::paginate(5);
-
-
-
         return view('pages.index', compact('Superheroes'));
     }
 
@@ -44,9 +39,8 @@ class SuperheroController extends Controller
      */
     public function store(Request $request)
     {
+
         $Superhero = new Superhero();
-
-
         $Superhero->url_image = $this->imageValidation($request->file('image'));
         $Superhero->nickname​ = $request->input('nickname​');
         $Superhero->real_name​ = $request->input('real_name');
@@ -55,7 +49,6 @@ class SuperheroController extends Controller
         $Superhero->catch_phrase = $request->input('catch_phrase');
         $Superhero->save();
 
-        //return $this->index();
         return redirect('/');
     }
 
@@ -67,12 +60,7 @@ class SuperheroController extends Controller
      */
     public function show(Superhero $superhero)
     {
-       //dd(Superhero::findOrFail($superheroId));
-        //$superhero = DB::table('superheroes')->find($superheroId);
-        //$superhero = Superhero::findOrFail($superhero);
-
-
-       return view('pages.show', compact('superhero'));
+        return view('pages.show', compact('superhero'));
     }
 
     /**
@@ -84,7 +72,7 @@ class SuperheroController extends Controller
     public function edit(Superhero $superhero)
     {
 
-        return view('pages.formEdit',compact('superhero'));
+        return view('pages.formEdit', compact('superhero'));
     }
 
     /**
@@ -96,7 +84,7 @@ class SuperheroController extends Controller
      */
     public function update(Request $request, Superhero $superhero)
     {
-        $superhero->url_image = $this->imageValidation($request->file('image'));
+        if ($request->file('image')) $superhero->url_image = $this->imageValidation($request->file('image'));
         $superhero->nickname​ = $request->input('nickname​');
         $superhero->real_name​ = $request->input('real_name');
         $superhero->origin_description​ = $request->input('origin_description');
@@ -113,10 +101,12 @@ class SuperheroController extends Controller
      *
      * @param Superhero $superhero
      * @return Response
+     * @throws Exception
      */
     public function destroy(Superhero $superhero)
     {
-        //
+        $superhero->delete();
+        return redirect()->back();
     }
 
     public function imageValidation($image)
@@ -131,7 +121,7 @@ class SuperheroController extends Controller
                 ->withInput();
         }
 
-        $path = $image->store('images','public');
+        $path = $image->store('images', 'public');
 
         return $path;
     }

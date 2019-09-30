@@ -6,10 +6,11 @@
     <div class="container">
         <form action="/superheroes/{{$superhero->id}}" method="post" enctype="multipart/form-data">
             @method('PATCH')
+            <a href="/superheroes" class="btn btn-primary p-3 float-right">Return back</a>
             <div class="text-center">
                 <img
                     src="{{ asset('/storage/'.$superhero->url_image) }}"
-                    style="width:400px;"
+                    style="max-width: 250px; max-height: 230px;"
                     class="card-img-top " alt="Image of hero">
             </div>
             <div class="form-group">
@@ -49,6 +50,6 @@
             @csrf
             <button type="submit" class="btn btn-primary">Confirm edit</button>
         </form>
-        <a href="/superheroes" class="btn btn-primary p-3">Return back</a>
+
     </div>
 @endsection

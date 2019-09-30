@@ -3,6 +3,13 @@
 @section('content')
 <h1 class="text-center pt-2 pb-4">Add new hero:</h1>
 
+<div class="row">
+    <div class="col-10">
+        <a href="/superheroes" class="btn btn-primary p-3 float-right">Return back</a>
+    </div>
+</div>
+
+
 <div class="container">
     <form action="/superheroes" method="post" enctype="multipart/form-data">
 
