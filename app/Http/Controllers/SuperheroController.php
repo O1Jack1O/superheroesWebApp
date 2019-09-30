@@ -41,7 +41,8 @@ class SuperheroController extends Controller
     {
 
         $Superhero = new Superhero();
-        $Superhero->url_image = $this->imageValidation($request->file('image'));
+
+        if ($request->file('image')) $Superhero->url_image = $this->imageValidation($request->file('image'));
         $Superhero->nickname​ = $request->input('nickname​');
         $Superhero->real_name​ = $request->input('real_name');
         $Superhero->origin_description​ = $request->input('origin_description');

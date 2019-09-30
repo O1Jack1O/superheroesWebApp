@@ -16,12 +16,12 @@ class CreateSuperheroesTable extends Migration
         Schema::create('superheroes', function (Blueprint $table) {
             $table->collation = 'utf8mb4_general_ci';
             $table->bigIncrements('id');
-            $table->string('nickname​');
-            $table->string('real_name​');
-            $table->text('origin_description​');
-            $table->text('superpowers');
-            $table->text('catch_phrase');
-            $table->string('url_image');
+            $table->string('nickname​')->nullable();
+            $table->string('real_name​')->nullable();
+            $table->text('origin_description​')->nullable();
+            $table->text('superpowers')->nullable();
+            $table->text('catch_phrase')->nullable();
+            $table->string('url_image')->nullable();
             $table->timestamps();
         });
     }
