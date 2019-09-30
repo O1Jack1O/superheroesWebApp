@@ -2,9 +2,11 @@
 
 ## Readme
 
-#####Ubuntu 19.04  64-бит
-#####docker version 19.03.1, build 74b1e89
-#####docker-compose version 1.24.1, build 4667896b
+Ubuntu 19.04  64-бит
+
+docker version 19.03.1, build 74b1e89
+
+docker-compose version 1.24.1, build 4667896b
 
 
 
